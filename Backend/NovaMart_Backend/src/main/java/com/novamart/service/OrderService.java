@@ -62,8 +62,7 @@ public class OrderService {
         Map<Product, Integer> selectedProducts = new LinkedHashMap<>();
         long subtotal = 0L;
         for (var entry : quantities.entrySet()) {
-            Product product = productRepository.findById(entry.getKey())
-                .filter(Product::getActive)
+            Product product = productRepository.findActiveByIdForUpdate(entry.getKey())
                 .orElseThrow(() -> ApiException.notFound("Một sản phẩm trong giỏ hàng không còn tồn tại."));
             int quantity = entry.getValue();
             if (product.getStockQty() < quantity) {
