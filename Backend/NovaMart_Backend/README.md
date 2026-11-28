@@ -40,7 +40,7 @@ Mặc định ứng dụng dùng:
 
 Nếu máy của bạn dùng mật khẩu MySQL khác, cấu hình biến môi trường DB_PASSWORD. Không đưa mật khẩu thật lên GitHub.
 
-Các bảng được Hibernate tạo/cập nhật từ Entity khi ứng dụng chạy lần đầu (spring.jpa.hibernate.ddl-auto=update). Dữ liệu mẫu được nạp tự động khi SEED_ENABLED=true.
+Các bảng được Hibernate tạo/cập nhật từ Entity khi ứng dụng chạy lần đầu (spring.jpa.hibernate.ddl-auto=update). Các bảng gồm users, categories, products, carts, cart_items, orders, order_items, payments, ai_consultations và vouchers. Quan hệ dữ liệu được mô tả tại docs/DATABASE_SCHEMA.md. Dữ liệu mẫu được nạp tự động khi SEED_ENABLED=true.
 
 ## 2. Chạy Backend
 
@@ -81,7 +81,7 @@ Thiết lập biến môi trường:
 - GEMINI_API_KEY: API key được cấp từ Google AI Studio.
 - GEMINI_MODEL: mặc định gemini-2.5-flash.
 
-Nếu chưa có key, endpoint chat trả phản hồi provider=demo; khi key hợp lệ và gọi Gemini thành công, phản hồi là provider=gemini.
+Nếu chưa có key, endpoint chat trả phản hồi provider=demo; khi key hợp lệ và gọi Gemini thành công, phản hồi là provider=gemini. Hội thoại được lưu trong bảng ai_consultations.
 
 ## 5. Cấu hình Front-end
 
@@ -115,7 +115,9 @@ Xem ví dụ request trong docs/API_TESTING.md.
 
 ## 7. Phạm vi và giới hạn hiện tại
 
-- Đăng ký/đăng nhập JWT, catalog, tạo đơn, kiểm tra tồn kho, voucher, Gemini (khi cấu hình key) và thanh toán giả lập đã có mã nguồn nền tảng.
+- Đăng ký/đăng nhập JWT, catalog, tạo đơn, kiểm tra tồn kho có khóa bản ghi, voucher, lưu lịch sử chat AI và thanh toán giả lập đã có mã nguồn nền tảng.
+- Gemini API thật chỉ hoạt động khi cấu hình GEMINI_API_KEY hợp lệ; nếu không, API trả provider=demo.
 - VNPay Sandbox thật chưa được tích hợp chữ ký và callback; API hiện trả UNAVAILABLE để tránh giả nhận thanh toán thật.
 - Các endpoint Admin đã được bảo vệ bằng role ADMIN. Giao diện đăng nhập và kết nối màn hình Admin với token cần hoàn thiện ở bước tích hợp Front-end.
+- Giỏ hàng Front-end hiện vẫn lưu trong Zustand/localStorage; bảng carts và cart_items đã được khai báo theo thiết kế nhưng chưa có API đồng bộ giỏ hàng.
 - Trước khi nộp, cần chạy ứng dụng trên máy cá nhân, kiểm tra kết nối MySQL và chụp ảnh minh chứng thực tế. Không ghi chức năng là Pass nếu chưa chạy kiểm thử.
