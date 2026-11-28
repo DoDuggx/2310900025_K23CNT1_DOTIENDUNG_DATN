@@ -1,0 +1,12 @@
+package com.novamart.repository;
+
+import com.novamart.domain.PurchaseOrder;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface OrderRepository extends JpaRepository<PurchaseOrder, Long> {
+    Optional<PurchaseOrder> findByIdempotencyKey(String idempotencyKey);
+    List<PurchaseOrder> findAllByOrderByCreatedAtDesc();
+}
