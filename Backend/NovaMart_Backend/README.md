@@ -57,8 +57,8 @@ Backend mặc định chạy tại http://localhost:8080; API prefix là /api/v1
 ## 3. Tài khoản và dữ liệu mẫu
 
 Khi seed được bật, hệ thống tạo:
-- 6 danh mục: laptop, phone, audio, monitor, accessory, wearable.
-- 10 sản phẩm công nghệ mẫu.
+- 10 danh mục: laptop, phone, audio, monitor, accessory, wearable, camera, gaming, network, storage.
+- 14 sản phẩm công nghệ mẫu.
 - 1 tài khoản Admin và 10 tài khoản khách hàng demo.
 - 2 voucher: NOVA10 (giảm 10%, tối đa 1.000.000đ) và TECH5 (giảm 5%, tối đa 500.000đ).
 
