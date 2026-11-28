@@ -1,6 +1,6 @@
 # Mô hình dữ liệu Backend NovaMart
 
-Hibernate ánh xạ các Entity sang bảng MySQL khi ứng dụng khởi động. Database mặc định: novamart_db.
+Hibernate ánh xạ các Entity sang bảng MySQL khi ứng dụng khởi động. Database mặc định: novamart_db. Seed mặc định gồm 10 danh mục, 14 sản phẩm, 11 tài khoản (1 Admin + 10 khách hàng demo) và 2 voucher.
 
 ## Danh sách bảng
 
