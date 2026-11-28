@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @Configuration
@@ -38,6 +37,10 @@ public class SeedData {
             categories.put("monitor", "Màn hình");
             categories.put("accessory", "Phụ kiện");
             categories.put("wearable", "Thiết bị đeo");
+            categories.put("camera", "Máy ảnh");
+            categories.put("gaming", "Gaming");
+            categories.put("network", "Thiết bị mạng");
+            categories.put("storage", "Thiết bị lưu trữ");
             categories.forEach((id, name) -> {
                 if (!categoryRepository.existsById(id)) categoryRepository.save(new Category(id, name));
             });
@@ -52,11 +55,15 @@ public class SeedData {
             seedProduct(productRepository, categoryRepository, "logitech-mx-master-3s", "Logitech MX Master 3S", "accessory", "Logitech", "LOG-MXM3S", 2490000L, 2890000L, 31, "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1100&q=85", "Chuột công thái học cho hiệu suất làm việc.", "Bán chạy", 4.8);
             seedProduct(productRepository, categoryRepository, "apple-watch-series-10", "Apple Watch Series 10", "wearable", "Apple", "APL-AW-S10", 10990000L, 11990000L, 11, "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1100&q=85", "Đồng hồ thông minh theo dõi hoạt động và thông báo.", "Chính hãng", 4.7);
             seedProduct(productRepository, categoryRepository, "anker-prime-power-bank", "Anker Prime Power Bank 27.650mAh", "accessory", "Anker", "ANK-PRIME-27650", 2990000L, 3490000L, 26, "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=1100&q=85", "Pin dự phòng dung lượng lớn, hỗ trợ sạc nhanh.", "Công suất cao", 4.8);
+            seedProduct(productRepository, categoryRepository, "canon-eos-r50", "Canon EOS R50 Kit 18-45mm", "camera", "Canon", "CAN-EOS-R50", 19990000L, 21990000L, 5, "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1100&q=85", "Máy ảnh mirrorless nhỏ gọn dành cho sáng tạo nội dung và du lịch.", "Sáng tạo", 4.8);
+            seedProduct(productRepository, categoryRepository, "razer-blackwidow-v4", "Razer BlackWidow V4", "gaming", "Razer", "RAZ-BW-V4", 4290000L, 4790000L, 13, "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1100&q=85", "Bàn phím gaming cơ học với hệ thống đèn RGB tùy chỉnh.", "Gaming", 4.7);
+            seedProduct(productRepository, categoryRepository, "tp-link-archer-ax73", "TP-Link Archer AX73 Wi-Fi 6", "network", "TP-Link", "TPL-AX73", 2990000L, 3490000L, 20, "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1100&q=85", "Router Wi-Fi 6 cho kết nối ổn định tại gia đình và văn phòng.", "Wi-Fi 6", 4.6);
+            seedProduct(productRepository, categoryRepository, "samsung-t7-shield-1tb", "Samsung T7 Shield 1TB", "storage", "Samsung", "SAM-T7S-1TB", 2690000L, 3190000L, 18, "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1100&q=85", "Ổ cứng SSD di động dung lượng 1TB, thiết kế bền bỉ.", "SSD di động", 4.8);
 
-            if (!voucherRepository.findByCodeIgnoreCaseAndActiveTrue("NOVA10").isPresent()) {
+            if (voucherRepository.findByCodeIgnoreCaseAndActiveTrue("NOVA10").isEmpty()) {
                 voucherRepository.save(new Voucher("NOVA10", 10, 1000000L, 0L));
             }
-            if (!voucherRepository.findByCodeIgnoreCaseAndActiveTrue("TECH5").isPresent()) {
+            if (voucherRepository.findByCodeIgnoreCaseAndActiveTrue("TECH5").isEmpty()) {
                 voucherRepository.save(new Voucher("TECH5", 5, 500000L, 0L));
             }
 
